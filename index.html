@@ -1,13 +1,1 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CampUtter</title>
-  <meta http-equiv="refresh" content="0; url=app/src/main/assets/index.html">
-  <script>location.replace('app/src/main/assets/index.html');</script>
-</head>
-<body>
-  <p>Opening CampUtter… <a href="app/src/main/assets/index.html">Tap here if it does not open automatically.</a></p>
-</body>
-</html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CampUtter</title><style>body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#f4f7fb;color:#102d5b}.box{text-align:center}.spin{width:36px;height:36px;border:4px solid #dce8fb;border-top-color:#3478f6;border-radius:50%;margin:0 auto 14px;animation:s .8s linear infinite}@keyframes s{to{transform:rotate(360deg)}}</style></head><body><div class="box"><div class="spin"></div><b>Opening CampUtter v10…</b></div><script>async function load(){try{const parts=await Promise.all([1,2,3].map(n=>fetch(`site/v10_b64_${n}.txt`).then(r=>{if(!r.ok)throw new Error('Missing site data');return r.text()})));const b64=parts.join('').replace(/\s/g,'');const bin=atob(b64);const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));let html;if('DecompressionStream'in window){const ds=new DecompressionStream('gzip');html=await new Response(new Blob([bytes]).stream().pipeThrough(ds)).text()}else{await new Promise((ok,fail)=>{const s=document.createElement('script');s.src='https://unpkg.com/pako@2.1.0/dist/pako.min.js';s.onload=ok;s.onerror=fail;document.head.appendChild(s)});html=new TextDecoder().decode(pako.ungzip(bytes))}document.open();document.write(html);document.close()}catch(e){document.body.innerHTML='<div class="box"><h2>CampUtter could not load</h2><p>Please refresh the page.</p></div>';console.error(e)}}load();</script></body></html>
